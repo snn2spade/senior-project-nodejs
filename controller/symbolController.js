@@ -4,7 +4,7 @@ var router = express.Router()
 var symbol = require('../model/symbol')
 // middleware that is specific to this router
 router.use(function (req, res, next) {
-  console.log(req.method + req.path)
+  console.log(req.method  + ":" +  req.path)
   next()
 })
 
