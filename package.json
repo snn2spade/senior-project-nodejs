@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.17.1",
     "bson-ext": "^1.0.5",
     "express": "^4.15.2",
     "mongodb": "^2.2.25"

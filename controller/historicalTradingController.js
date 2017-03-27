@@ -14,4 +14,11 @@ router.get('/getlimit/:symbol/:amount', function (req, res) {
   })
 })
 
+router.post('/getbysymbollist', function (req, res) {
+  console.log(req.body.list)
+  his_trading.getLastestHistoricalTradingByList(req.body.list,(docs)=>{
+    res.json(docs)
+  })
+})
+
 module.exports = router
