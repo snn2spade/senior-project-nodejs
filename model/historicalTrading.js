@@ -5,15 +5,24 @@ getHistoricalTrading = function(symbol,limit_amount,callback) {
   mongoClient.connect(app_config.db_url, function(err, db) {
     symbol = symbol.toUpperCase()
     db.collection('historicalTrading').findOne({symbol_name:symbol},(err,doc)=>{
-      let data = doc.data.slice(0,limit_amount)
-      db.close()
       // console.log(data)
-      callback(data)
+      if(err != null || doc == null){
+        callback(null)
+      }
+      else{
+        let data = doc.data.slice(0,limit_amount)
+        callback(data)
+      }
+      db.close()
     })
   })
 }
 
 getLastestHistoricalTradingByList = function(symbolList,callback) {
+  if(symbolList == null || symbolList.length == 0){
+    callback([])
+    return
+  }
   for(let i=0;i<symbolList.length;i++){
     symbolList[i] = symbolList[i].toUpperCase()
   }

@@ -10,14 +10,19 @@ router.use(function (req, res, next) {
 
 router.get('/getlimit/:symbol/:amount', function (req, res) {
   his_trading.getHistoricalTrading(req.params.symbol,req.params.amount,(docs)=>{
-    res.json(docs)
+    if(docs == null){
+      res.send({ error: 'Not found' });
+    }
+    else{
+      res.json(docs)
+    }
   })
 })
 
 router.post('/getbysymbollist', function (req, res) {
   console.log(req.body.list)
   his_trading.getLastestHistoricalTradingByList(req.body.list,(docs)=>{
-    res.json(docs)
+      res.json(docs)
   })
 })
 
